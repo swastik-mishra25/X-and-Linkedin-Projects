@@ -16,7 +16,7 @@
 <body>
 
     <header class="app-header">
-        <h1>Hostel Life Tracker</h1>
+        <h1>HOSTEL LIFE TRACKER</h1>
         <p class="subtitle">Pocket Money & Daily Grind Analytics</p>
     </header>
 
@@ -25,7 +25,7 @@
         <section class="input-zone">
 
             <div class="glass-card">
-                <h2 class="card-title">Add Expense</h2>
+                <h2 class="card-title">Record Expense</h2>
                 <form id="expense-form" class="tracker-form">
                     <div class="form-group">
                         <label for="exp-amount">Amount (₹)</label>
@@ -69,9 +69,11 @@
                         <div class="select-wrapper">
                             <select id="con-unit" required>
                                 <option value="" disabled selected>Select metric...</option>
-                                <option value="Hours">Study Output (Hours)</option>
-                                <option value="GB">Mobile Data (GB)</option>
-                                <option value="Clothes">Laundry (Items)</option>
+                                <option value="Glasses"> Water Intake (Glasses)</option>
+                                <option value="Hours"> Sleep Hours (Hours)</option>
+                                <option value="Hours"> Study Hours (Hours)</option>
+                                <option value="Mins">  Exercise (Mins)</option>
+                                <option value="Meals"> Meal Tracking (Meals)</option>
                             </select>
                         </div>
                     </div>
@@ -101,25 +103,9 @@
             </div>
 
             <div class="glass-card">
-                <div class="calendar-header">
-                    <button class="icon-btn" id="prev-month">&lt;</button>
-                    <h3 id="calendar-month-display">April 2026</h3>
-                    <button class="icon-btn" id="next-month">&gt;</button>
-                </div>
-                
-                <div class="calendar-grid" id="calendar-grid">
-                    <div class="calendar-day-name">Sun</div>
-                    <div class="calendar-day-name">Mon</div>
-                    <div class="calendar-day-name">Tue</div>
-                    <div class="calendar-day-name">Wed</div>
-                    <div class="calendar-day-name">Thu</div>
-                    <div class="calendar-day-name">Fri</div>
-                    <div class="calendar-day-name">Sat</div>
-                    
-                    <div class="calendar-cell active-today">
-                        <span>24</span>
-                        <span class="expense-badge">₹150</span>
-                    </div>
+                <h3 class="card-title">Expense & Habit Tracking Timeline</h3>
+                <div class="github-wrapper">
+                    <div class="github-heatmap" id="github-timeline"></div>
                 </div>
             </div>
 
