@@ -3,93 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Tracker</title>
+    <title>Hostel Life Tracker</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
-        <h1>Expense & Consumption Tracker</h1>
+    <header class="app-header">
+        <h1>Hostel Life Tracker</h1>
+        <p class="subtitle">Pocket Money & Daily Grind Analytics</p>
     </header>
 
-    <main class="container">
+    <main class="dashboard-wrapper">
         
-        <section class="input-panel">
+        <section class="input-zone">
             
-            <div class="card">
-                <h2>Log Expense</h2>
-                <form id="expense-form">
+            <div class="glass-card">
+                <h2 class="card-title">Record Expense</h2>
+                <form id="expense-form" class="tracker-form">
                     <div class="form-group">
-                        <label for="exp-amount">Amount ($)</label>
-                        <input type="number" id="exp-amount" required min="1">
+                        <label for="exp-amount">Amount (₹)</label>
+                        <input type="number" id="exp-amount" placeholder="0" required min="1">
                     </div>
+                    
                     <div class="form-group">
                         <label for="exp-category">Category</label>
-                        <select id="exp-category" required>
-                            <option value="Food">Food</option>
-                            <option value="Travel">Travel</option>
-                            <option value="Utilities">Utilities</option>
-                        </select>
+                        <div class="select-wrapper">
+                            <select id="exp-category" required>
+                                <option value="" disabled selected>Where did the money go?</option>
+                                <option value="Mess/Canteen">Mess & Night Canteen</option>
+                                <option value="Stationery">Prints & Stationery</option>
+                                <option value="Travel">Auto & Travel</option>
+                                <option value="Tech/Components">Tech & Components</option>
+                                <option value="Misc">Miscellaneous</option>
+                            </select>
+                        </div>
                     </div>
+
                     <div class="form-group">
                         <label for="exp-date">Date</label>
                         <input type="date" id="exp-date" required>
                     </div>
-                    <button type="submit">Add Expense</button>
+
+                    <button type="submit" class="btn-primary">Add Expense</button>
                 </form>
             </div>
 
-            <div class="card">
-                <h2>Log Consumption</h2>
-                <form id="consumption-form">
+            <div class="glass-card">
+                <h2 class="card-title">Record Daily Activity</h2>
+                <form id="consumption-form" class="tracker-form">
                     <div class="form-group">
                         <label for="con-quantity">Quantity</label>
-                        <input type="number" id="con-quantity" required min="1">
+                        <input type="number" id="con-quantity" placeholder="0" required min="1">
                     </div>
+                    
                     <div class="form-group">
-                        <label for="con-unit">Unit</label>
-                        <select id="con-unit" required>
-                            <option value="kWh">Electricity (kWh)</option>
-                            <option value="Liters">Fuel (Liters)</option>
-                            <option value="kg">Weight (kg)</option>
-                        </select>
+                        <label for="con-unit">What are you tracking?</label>
+                        <div class="select-wrapper">
+                            <select id="con-unit" required>
+                                <option value="" disabled selected>Select metric...</option>
+                                <option value="Hours">Study Output (Hours)</option>
+                                <option value="GB">Mobile Data (GB)</option>
+                                <option value="Clothes">Laundry (Items)</option>
+                            </select>
+                        </div>
                     </div>
+
                     <div class="form-group">
                         <label for="con-date">Date</label>
                         <input type="date" id="con-date" required>
                     </div>
-                    <button type="submit">Add Consumption</button>
+
+                    <button type="submit" class="btn-primary">Log Activity</button>
                 </form>
             </div>
+
         </section>
 
-        <section class="dashboard">
+        <section class="data-zone">
             
-            <div class="summary-cards">
-                <div class="card summary-card">
-                    <h3>Total Expenses</h3>
-                    <h2 id="total-expense">$0</h2>
+            <div class="summary-grid">
+                <div class="glass-card summary-card">
+                    <h3>Total Spent</h3>
+                    <p id="total-expense" class="metric highlight-primary">₹0</p>
                 </div>
-                <div class="card summary-card">
-                    <h3>Total Consumption</h3>
-                    <h2 id="total-consumption">0 Units</h2>
+                <div class="glass-card summary-card">
+                    <h3>Total Grind</h3>
+                    <p id="total-consumption" class="metric highlight-secondary">0 Logged</p>
                 </div>
             </div>
 
-            <div class="card">
-                <h3>Budget Limit ($1000)</h3>
+            <div class="glass-card">
+                <div class="budget-header">
+                    <h3>Monthly Allowance</h3>
+                    <span class="budget-limit">Limit: ₹5000</span>
+                </div>
                 <div class="budget-track">
                     <div class="budget-fill" id="budget-fill"></div>
                 </div>
             </div>
 
-            <div class="card history-section">
-                <h3>Recent History</h3>
-                <ul id="history-list" class="history-list">
+            <div class="glass-card history-card">
+                <h3 class="card-title">Recent Activity</h3>
+                
+                <div class="history-container custom-scroll">
+                    <ul id="history-list" class="history-list">
+                        <li class="empty-state" id="empty-state">
+                            <svg class="empty-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                            <p>No activity logged yet.</p>
+                        </li>
                     </ul>
+                </div>
             </div>
 
         </section>
+
     </main>
 
     <script src="script.js"></script>
