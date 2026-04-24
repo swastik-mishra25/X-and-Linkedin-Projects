@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hostel Life Tracker</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <header class="app-header">
@@ -19,26 +21,27 @@
     </header>
 
     <main class="dashboard-wrapper">
-        
+
         <section class="input-zone">
-            
+
             <div class="glass-card">
-                <h2 class="card-title">Record Expense</h2>
+                <h2 class="card-title">Add Expense</h2>
                 <form id="expense-form" class="tracker-form">
                     <div class="form-group">
                         <label for="exp-amount">Amount (₹)</label>
                         <input type="number" id="exp-amount" placeholder="0" required min="1">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="exp-category">Category</label>
                         <div class="select-wrapper">
                             <select id="exp-category" required>
                                 <option value="" disabled selected>Where did the money go?</option>
-                                <option value="Mess/Canteen">Mess & Night Canteen</option>
-                                <option value="Stationery">Prints & Stationery</option>
-                                <option value="Travel">Auto & Travel</option>
-                                <option value="Tech/Components">Tech & Components</option>
+                                <option value="Food & Snacks">Food & Snacks</option>
+                                <option value="Trips & Outings">Trips & Outings</option>
+                                <option value="Gym & Fitness">Gym & Fitness</option>
+                                <option value="Daily Essentials">Daily Essentials</option>
+                                <option value="Transport">Transport</option>
                                 <option value="Misc">Miscellaneous</option>
                             </select>
                         </div>
@@ -49,18 +52,18 @@
                         <input type="date" id="exp-date" required>
                     </div>
 
-                    <button type="submit" class="btn-primary">Add Expense</button>
+                    <button type="submit" class="btn-primary">Save Expense</button>
                 </form>
             </div>
 
             <div class="glass-card">
-                <h2 class="card-title">Record Daily Activity</h2>
+                <h2 class="card-title">Track Habits</h2>
                 <form id="consumption-form" class="tracker-form">
                     <div class="form-group">
                         <label for="con-quantity">Quantity</label>
                         <input type="number" id="con-quantity" placeholder="0" required min="1">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="con-unit">What are you tracking?</label>
                         <div class="select-wrapper">
@@ -78,22 +81,45 @@
                         <input type="date" id="con-date" required>
                     </div>
 
-                    <button type="submit" class="btn-primary">Log Activity</button>
+                    <button type="submit" class="btn-primary">Save Activity</button>
                 </form>
             </div>
 
         </section>
 
         <section class="data-zone">
-            
+
             <div class="summary-grid">
                 <div class="glass-card summary-card">
                     <h3>Total Spent</h3>
                     <p id="total-expense" class="metric highlight-primary">₹0</p>
                 </div>
                 <div class="glass-card summary-card">
-                    <h3>Total Grind</h3>
-                    <p id="total-consumption" class="metric highlight-secondary">0 Logged</p>
+                    <h3>Items Tracked</h3>
+                    <p id="total-consumption" class="metric highlight-secondary">0</p>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <div class="calendar-header">
+                    <button class="icon-btn" id="prev-month">&lt;</button>
+                    <h3 id="calendar-month-display">April 2026</h3>
+                    <button class="icon-btn" id="next-month">&gt;</button>
+                </div>
+                
+                <div class="calendar-grid" id="calendar-grid">
+                    <div class="calendar-day-name">Sun</div>
+                    <div class="calendar-day-name">Mon</div>
+                    <div class="calendar-day-name">Tue</div>
+                    <div class="calendar-day-name">Wed</div>
+                    <div class="calendar-day-name">Thu</div>
+                    <div class="calendar-day-name">Fri</div>
+                    <div class="calendar-day-name">Sat</div>
+                    
+                    <div class="calendar-cell active-today">
+                        <span>24</span>
+                        <span class="expense-badge">₹150</span>
+                    </div>
                 </div>
             </div>
 
@@ -109,11 +135,16 @@
 
             <div class="glass-card history-card">
                 <h3 class="card-title">Recent Activity</h3>
-                
+
                 <div class="history-container custom-scroll">
                     <ul id="history-list" class="history-list">
                         <li class="empty-state" id="empty-state">
-                            <svg class="empty-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                            <svg class="empty-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                </path>
+                            </svg>
                             <p>No activity logged yet.</p>
                         </li>
                     </ul>
@@ -126,4 +157,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
